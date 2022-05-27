@@ -1,13 +1,7 @@
 <?php
 session_start();
 
-$dbUserName = 'root';
-$dbPassword = 'password';
-try {
-    $pdo = new PDO('mysql:host=mysql; dbname=todo; charset=utf8', $dbUserName, $dbPassword);
-} catch (PDOException $e) {
-    $msg = $e->getMessage();
-}
+require_once __DIR__ . '/../utils/pdo.php';
 
 $category_id = filter_input(INPUT_POST, 'id');
 $category_name = filter_input(INPUT_POST, 'category_name');
