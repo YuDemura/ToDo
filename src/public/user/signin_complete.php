@@ -11,13 +11,7 @@ if (empty($email) || empty($password)) {
     exit();
 }
 
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO(
-    'mysql:host=mysql; dbname=todo; charset=utf8',
-    $dbUserName,
-    $dbPassword
-);
+require_once __DIR__ . '/../utils/pdo.php';
 
 $sql = 'select * from users where email = :email';
 $statement = $pdo->prepare($sql);
