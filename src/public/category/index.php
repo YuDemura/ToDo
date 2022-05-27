@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-include ('../header.php');
-
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO('mysql:host=mysql; dbname=todo; charset=utf8', $dbUserName, $dbPassword);
+require_once __DIR__ . '/../utils/pdo.php';
 
 $category_id = $_GET['id'];
 $user_id = $_SESSION['user_id'];
@@ -26,6 +22,8 @@ $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>カテゴリ一覧</title>
 </head>
+
+<?php require_once __DIR__ . '/../utils/header.php'; ?>
 
 <body>
     <h1>カテゴリ一覧</h1>
