@@ -1,16 +1,20 @@
 <?php
 session_start();
-
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO('mysql:host=mysql; dbname=todo; charset=utf8', $dbUserName, $dbPassword);
+$_SESSION['error'] = '';
 
 $user_id = $_SESSION['user_id'];
 $contents = filter_input(INPUT_POST, 'contents');
 $deadline = filter_input(INPUT_POST, 'deadline');
 $category_id = filter_input(INPUT_POST, 'category_id');
 
-$sql = 'INSERT INTO tasks(user_id, status, contents, category_id, deadline) VALUES(:user_id, 0, :contents, :category_id, :deadline)';
+if (empty($_POST['contents']) && !empty($_POST['deadline'])) {
+    $_SESSION['error'] = 'タスク内容または日付を入力してください';
+    header('Location: ./create.php');
+    exit();
+}
+
+require_once __DIR__ . '/../utils/pdo.php';
+$sql = 'INSERT INTO tasks(user_id, contents, category_id, deadline) VALUES(:user_id, :contents, :category_id, :deadline)';
 $statement = $pdo->prepare($sql);
 $statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 $statement->bindValue(':contents', $contents, PDO::PARAM_STR);
