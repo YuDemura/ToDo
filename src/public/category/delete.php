@@ -1,8 +1,7 @@
 <?php
 session_start();
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO('mysql:host=mysql; dbname=todo; charset=utf8', $dbUserName, $dbPassword);
+
+require_once __DIR__ . '/../utils/pdo.php';
 
 $category_id = filter_input(INPUT_GET, 'id');
 $user_id = $_SESSION['user_id'];
