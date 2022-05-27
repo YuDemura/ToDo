@@ -1,8 +1,6 @@
 <?php
 
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO('mysql:host=mysql; dbname=todo; charset=utf8', $dbUserName, $dbPassword);
+require_once __DIR__ . '/../utils/pdo.php';
 
 $task_id = filter_input(INPUT_GET, 'id');
 $status = filter_input(INPUT_POST, 'status');
