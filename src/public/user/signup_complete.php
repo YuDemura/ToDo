@@ -1,11 +1,5 @@
 <?php
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO(
-    'mysql:host=mysql; dbname=todo; charset=utf8',
-    $dbUserName,
-    $dbPassword
-);
+require_once __DIR__ . '/../utils/pdo.php';
 
 $email = filter_input(INPUT_POST, 'email');
 $name = filter_input(INPUT_POST, 'name');
